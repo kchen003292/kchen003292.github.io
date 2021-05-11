@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Virtual Assistant</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link rel="shortcut icon" href="img/VA_shortcut_logo.PNG" style=" object-fit: cover;">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="page">
+    <div class="page dashboard" id="dashboard">
+      <div class="dashboard-slider">
+
+        <div class="slide current" id="welcome-slide">
+          <!-- The video -->
+          <!-- <video autoplay muted loop id="myVideo">
+            <source src="img/beach.mp4" type="video/mp4">
+          </video> -->
+          <div class="content">
+            <div>
+              
+            </div>
+            <h1 id="slide-Title" class="slide-Title">Home</h1>
+            
+            <div id="date-Container">
+
+              <h1 id="today-month">April</h1>
+              <h1 id="today-day">06</h1>
+              <br>
+
+              <div id="notification-Container">
+              <table class="notif-table" id="notif-table">
+                <thead id="notif-head">
+                <tr id="notif-row">
+                  
+                  <th >Today's Events:</th>
+                  
+                </tr>
+              </thead>
+                <tbody id="notif-tableBody">
+                  
+
+
+                </tbody>
+              </table>
+              
+            </div>
+            </div>
+            <div id="favorite-link-container" onclick="window.open('https://www.youtube.com/')" style="display: none">
+            <img src="https://www.youtube.com/favicon.ico" id="favorite-link-logo">
+            <br>
+                <a href="https://www.youtube.com/" id="favorite-link-container">youtube</a>
+
+            </div>
+             <div id="favorites-Container">
+        
+          
+            
+
+        
+              
+        </div>
+            
+
+
+            
+
+
+
+            
+          </div>
+        </div>
+        <div class="slide" id="workSchool-slide">
+          <div class="content">
+            <h1 id="slide-Title" class="slide-Title">work</h1>
+            <div class="calendar-container" id="calendar-container">
+              <div id="app"></div>
+    
+          </div>
+            <div id="widget-Container">
+              <span class="dot dot5" id="addEvent">MY EVENTS</span>
+              <span class="dot dot5" id="favorites">FAVORITES</span>
+              <span class="dot dot5" id="settings">SETTINGS</span>
+              <span class="dot dot5" id="alarms">ALARMS</span>
+            </div>
+            <div id="eventList">
+              
+              <table class="content-table" id="table">
+              <thead id="tableHeader">
+                <tr>
+                  
+                  <th >Class</th>
+                  
+                  <th >Start Time</th>
+                  <th>End 
+                    <br>
+                  Time</th>
+                  <th>Zoom Link</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody id="tableBody">
+                
+
+
+               </tbody>
+              </table>
+            </div>
+            
+            
+          </div>
+          
+          
+            
+          
+        </div>
+        <div class="slide" id="rest-slide">
+          <div class="content">
+            <h1 id="slide-Title" class="slide-Title">relax</h1>
+            
+
+            
+
+    <div class="breathing-animation-container" id="breathing-animation-container">
+      <div class="circle"></div>
+
+      <p id="text"></p>
+
+      <div class="pointer-container">
+        <span class="pointer"></span>
+      </div>
+
+      <div class="gradient-circle"></div>
+    </div>
+
+            
+            
+          </div>
+        </div>
+        
+       
+      </div>
+
+                <div id="slide-info">
+            <h1 id="dashboard-welcome-txt"> </h1>
+          </div>
+      
+      <div id="dateChosenContainer">
+        <div id="addClass-container">
+            <form id="addClassForm">
+              <div id="addClassForm-header">
+                 <h3 id="formActionType">Add Class</h3>
+              </div>
+              
+              <div class="form-group">
+                <label>Event Name</label>
+                <input type="text" class="form-control"  id="className" placeholder="Name of Event" required>
+                <br>
+                <label id="classNameError" class="addClass-Form-Error"> </label>
+              </div>
+              <div class="form-group">
+                <label>Start Time</label><br>
+                <input type="time" class="time-control" id="startTime" placeholder="Start Time" name="appt" required>
+                <br>
+                 <label id="startTimeError" class="addClass-Form-Error"> </label>
+              </div>
+              <div class="form-group">
+                <label>End Time</label><br>
+                <input type="time" class="time-control" id="endTime" placeholder="End Time" name="appt" required>
+                <br>
+                 <label id="endTimeError" class="addClass-Form-Error"> </label>
+              </div>
+              <div class="form-group" id="byZoomLink">
+                <label>Link</label>
+                <input type="text" class="form-control"  id="zoomLink" placeholder="Website URL">
+                <br>
+                 <label id="linkError" class="addClass-Form-Error"> </label>
+              </div>
+              <div id="byCode">
+                    <div class="form-group">
+                    <label>ZoomID</label>
+                    <input type="text" class="form-control"  id="zoomID" placeholder="Zoom ID">
+                    <br>
+                     <label id="zoomIDError" class="addClass-Form-Error"> </label>
+                  </div>
+                  <div class="form-group">
+                    <label>Zoom Password</label>
+                    <input type="text" class="form-control"  id="zoomPass" placeholder="Zoom Password">
+                    <br>
+                     <label id="zoomPassError" class="addClass-Form-Error"> </label>
+                  </div>
+            </div>
+            <div id="multiRepeatChoice-container"  class="dropdown" >
+                            <button onclick="myFunction(event)" class="dropbtn" >Repeat    </button>
+                             <div id="myDropdown" class="dropdown-content" onmouseleave="returnDef(event)">
+                           <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Monday 
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Tuesday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Wednesday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Thursday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Friday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Saturday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Sunday
+                          </h4> 
+                          </div>
+                          
+
+                          
+                          
+                      
+
+                        </div>
+
+                
+                
+              <br><br>  
+              <button onclick="addMulti(event)" id="addmultipleEventsBtn" class="addClassButton">Add Multiple Events</button>  
+              <button type="submit" onclick="createClass(event)" class="addClassButton">Submit</button>
+              <button id="makeZoomID"onclick="makeZoomId()">Click Here to make a Zoom link from ZoomID and Password</button>
+            </form>
+           
+            <div id="chosenDate-table-container">
+              <h1> Events for</h1>
+              <h2 id="dateHeader"></h2>
+              <table class="chosenDate-content-table" id="chosenDate-table">
+              <thead id="chosenDate-tableHeader">
+                <tr>
+                  
+                  <th >Class</th>
+                  
+                  <th >Start Time</th>
+                  <th>End Time</th>
+                  <th>Zoom Link</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody id="chosenDate-tableBody">
+                
+
+
+               </tbody>
+              </table>
+            </div>
+         
+          </div>
+          
+      </div>
+
+      
+      
+
+
+          <div id="addMultipleClasses">
+            <!-- Editable table -->
+            <div class="card">
+              <h3 class="card-header text-center font-weight-bold text-uppercase py-4">
+                Add Multiple Events
+              </h3>
+              <div class="card-body">
+                <div id="multi-table" class="table-editable">
+                  <button onclick="addAnotherRow()" class="addClassButton">Add Another Event</button>
+                  <button onclick="submitMulti(event)" class="addClassButton">Submit</button>
+                  <button onclick="resetMultiTable()" class="addClassButton">Reset</button>
+                  <table class="table table-bordered table-responsive-md table-striped text-center" id="multTableTable">
+                    <thead>
+                      <tr>
+                        <th class="text-center">Event Name</th>
+                        <th class="text-center">Start Time</th>
+                        <th class="text-center">End Time</th>
+                        <th class="text-center">Zoom Link</th>
+                        
+                        <th class="text-center">Zoom ID</th>
+                        <th class="text-center">Zoom Password</th>
+                        <th class="text-center" id="tableheadRepeat">Repeat</th>
+                        <th class="text-center">Delete</th>
+
+                      </tr>
+                    </thead>
+                    <tbody id="multiTable-body">
+                      <tr class="multiTable-row">
+                        <td class="pt-3-half" contenteditable="true"></td>
+                        <td class="pt-3-half" ><input type="time" class="multiTime-control"></td>
+                        <td class="pt-3-half" ><input type="time" class="multiTime-control"></td>
+                        <td class="pt-3-half" contenteditable="true"></td>
+                        <td class="pt-3-half" contenteditable="true"></td>
+                        <td class="pt-3-half" contenteditable="true"></td>
+                       
+                        
+                        <td class="pt-3-half">
+                          <div id="multiRepeatChoice-container"  class="dropdown" onmouseleave="returnDef(event)">
+                            <button onclick="myFunction(event)" class="dropbtn" onmouseover="changeDef(event)" >Repeat    </button>
+                             <div id="myDropdown" class="dropdown-content" >
+                           <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Monday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Tuesday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Wednesday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Thursday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Friday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Saturday
+                          </h4> 
+                          <h4 id="repeatChoicesLabel" class="repeat">
+                             Repeat Sunday
+                          </h4> 
+                          </div>
+                          
+
+                          
+                          
+                      
+
+                        </div>
+                      </td>
+                       <td class="pt-3-half"><button onclick="deleteRow(event)" class="tableButton">Remove</button>
+</td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- Editable table -->
+          </div>
+
+          <div id="setting-container">
+            
+            <div class="step">
+          <div class="preview">
+            <h6>Virtual Assistant</h6>
+            <h2>Edit User</h2>
+          </div>
+          <div class="edit-info">
+            <img src="img/VA_logo.PNG" id="edit-Form-Logo">
+           
+            <form id="editUserForm">
+              <div class="form-group">
+                <label>First Name</label> <br>
+                <input type="text" class="form-control-setup"  id="edit-firstName"><br>
+                <label id="edit-firstNameError" class="setUp-Form-Error"> </label><br>
+                <label>Last Name</label> <br>
+                <input type="text" class="form-control-setup"  id="edit-lastName"><br>
+                <label id="edit-lastNameError" class="setUp-Form-Error"> </label><br>
+                <!-- <label>Auto Join</label><input type="checkbox"  id="autoJoin"  /> -->
+                <label>Color Theme</label> <br>
+                <div id="colorSelection-Container">
+                  <span class="dot dot1" id="dark"></span>
+                  <span class="dot dot2" id="aqua"></span>
+                  <span class="dot dot3" id="nature"></span>
+                  <span class="dot dot4" id="ruby"></span><br>
+                </div>
+                <label id="edit-colorThemeChosen" class="edit-currentColor"> </label>
+                <label id="edit-colorThemeError" class="edit-Form-Error"> </label>
+                
+
+              </div>
+              <div id="userForm-error"></div>
+              <button type="submit" class="addClassButton" id="userForm-Edit" onclick="editUser(event)">SAVE</button>
+              <br>
+              <a href="find_account_link" id="edit-connectLink">Link To Another Account</a>
+            </form>
+            
+           </div>
+        </div>
+          </div>
+
+          <div id="addFavorite-container">
+            <form id="addFavoriteForm">
+              <div id="addFavoriteForm-header">
+                 <h3 id="formActionType">Add Favorite</h3>
+              </div>
+              
+              <div class="form-group">
+                
+                <label>Name</label>
+                <input type="text" class="form-control"  id="favoriteLinkName" placeholder="Name of Favorite" required>
+                
+                
+                <br>
+                <label id="linkNameError" class="addFavorite-Form-Error"> </label>
+              </div>
+              <div class="form-group">
+                
+               
+                <label>Link</label>
+                <input type="text" class="form-control"  id="favoriteLink" placeholder="Link of Favorite" required>
+               
+              </div>
+              
+            <div id="favoriteLimitError">
+              You can only have 6 favorite websites saved. Please remove one to continue
+            </div>
+
+                
+                
+              <br><br>  
+              <button  type="submit" onclick="addFavorite(event)" id="addFavoriteBtn" class="addClassButton">Add Favorite</button>  
+              
+            </form>
+
+            <div id="addFavorite-table-container">
+              <h1> My Favorites</h1>
+              <h2 id="addFavoriteHeader"></h2>
+              <table class="addFavorite-content-table" id="addFavorite-table">
+              <thead id="addFavorite-tableHeader">
+                <tr>
+                  
+                  <th >Name</th>
+                  
+                  <th >Link</th>
+                  <th>Remove</th>
+                  
+                </tr>
+              </thead>
+              <tbody id="addFavorite-tableBody">
+                
+
+
+               </tbody>
+              </table>
+            </div>
+            
+          </div>
+          
+          
+
+          
+       <div class="sliderButtons">
+          <button id="prev"><i class="fas fa-arrow-left"></i></button>
+          <button id="next"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div id="slide-Counter">
+          <span class="dot dot6 currentDot" id="slide1"></span>
+          <span class="dot dot6" id="slide2"></span>
+          <span class="dot dot6" id="slide3"></span>
+        </div>
+
+
+
+
+
+      
+
+      
+    </div>
+    
+
+    <div classs="page set-up" id="setUp">
+      <div id="setUp-Welcome">
+        <div id="setUp-Welcome-BorderContainer">
+          <h1 id="setUp-Title">V<br>A</h1>
+        </div>
+        <h2 id="setUp-Welcome-Text-Greeting">Welcome to Virtual Assistant</h2>
+        <div id="setUp-LoadingContainer">
+          <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+          <h2 id="setUp-Welcome-Text">Loading Virtual Assistant...</h2>
+        </div>
+       
+      </div>
+      <div id="setUp-Form">
+       <div id="setUp-Form-Container">
+          
+        <div class="step">
+          <div class="preview">
+            <h6>Virtual Assistant</h6>
+            <h2>Set Up</h2>
+          </div>
+          <div class="info">
+            <img src="img/VA_logo.PNG" id="setUp-Form-Logo">
+           
+            <form id="userForm">
+              <div class="form-group">
+                <label>First Name</label> <br>
+                <input type="text" class="form-control-setup"  id="firstName" placeholder="James"><br>
+                <label id="firstNameError" class="setUp-Form-Error"> </label><br>
+                <label>Last Name</label> <br>
+                <input type="text" class="form-control-setup"  id="lastName" placeholder="Bond"><br>
+                <label id="lastNameError" class="setUp-Form-Error"> </label><br>
+                <label>Color Theme</label> <br>
+                <div id="colorSelection-Container">
+                  <span class="dot dot1 #333" id="dark"></span>
+                  <span class="dot dot2 #0083B7" id="aqua"></span>
+                  <span class="dot dot3 #2E8B57" id="nature"></span>
+                  <span class="dot dot4 #DC143C" id="ruby"></span><br>
+                </div>
+                <label id="colorThemeChosen" class="currentColor"> </label>
+                <label id="colorThemeError" class="setUp-Form-Error"> </label>
+
+              </div>
+              <div id="userForm-error"></div>
+              <button type="submit" class="btn btn-primary" id="userForm-Submit">CREATE</button>
+              <a href="find_account_link" id="setUp-connectLink">Link To Another Account</a>
+            </form>
+            
+           </div>
+        </div>
+        
+        </div>
+        
+      </div>
+      <div id="setUp-Success">
+
+        
+        <div id="setUp-Success-Container">
+          <img src="img/success.gif" id="setUp-Success-Logo">
+          <h1>Set Up Successful</h1>
+          <h2 id="setUp-Success-Welcome"></h2>
+          <p>Your Set Up was successful. You can now use Virtual Assistant</p>
+          <button type="submit" class="btn btn-primary" id="Success-Submit">Go to Dashbord</button>
+        </div>
+        
+      </div>
+      
+      
+    </div>
+  </div>
+   <div id="loading-blocker">
+      
+    </div>
+    
+    
+    
+    <nav id="tool-bar">
+      
+    </nav>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://unpkg.com/dayjs"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/weekday"></script>
+    <script>dayjs.extend(window.dayjs_plugin_weekday)</script>
+    <script src="https://unpkg.com/dayjs@1.8.21/plugin/weekOfYear"></script>
+    <script>dayjs.extend(window.dayjs_plugin_weekOfYear)</script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
