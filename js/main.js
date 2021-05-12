@@ -113,6 +113,52 @@ var alarmsWidget = document.getElementById("alarms");
 var appendDayIndex = 0;
 var appendDayFirst = true;
 
+//calendar variables
+document.getElementById("app").innerHTML = `
+<div class="calendar-month">
+  <section class="calendar-month-header">
+    <div
+      id="selected-month"
+      class="calendar-month-header-selected-month"
+    ></div>
+    <section class="calendar-month-header-selectors">
+      <span id="previous-month-selector"><</span>
+      <span id="present-month-selector">Today</span>
+      <span id="next-month-selector">></span>
+    </section>
+  </section>
+
+  <ol
+    id="days-of-week"
+    class="day-of-week"
+  /></ol>
+
+  <ol
+    id="calendar-days"
+    class="days-grid"
+  >
+  </ol>
+</div>
+`;
+
+const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const TODAY = dayjs().format("YYYY-MM-DD");
+
+const INITIAL_YEAR = dayjs().format("YYYY");
+const INITIAL_MONTH = dayjs().format("M");
+
+let selectedMonth = dayjs(new Date(INITIAL_YEAR, INITIAL_MONTH - 1, 1));
+let currentMonthDays;
+let previousMonthDays;
+let nextMonthDays;
+
+const daysOfWeekElement = document.getElementById("days-of-week");
+
+WEEKDAYS.forEach((weekday) => {
+  const weekDayElement = document.createElement("li");
+  daysOfWeekElement.appendChild(weekDayElement);
+  weekDayElement.innerText = weekday;
+});
 
 //User Prefference Variables
 var firstName;
@@ -892,6 +938,7 @@ function onDocumentMouseClick( event ) {
 			setUpFormElement.style.display = "none";
 			userStatus = userStatus+1;
 			setUpSuccessWelcomeElement.innerHTML = "Welcome "+firstName.value+"!";
+
 		}else if(userStatus == 2){
 			setUpSuccessElement.style.display = "none";
 			dashboardElement.style.display = "inline-block";
@@ -899,6 +946,47 @@ function onDocumentMouseClick( event ) {
 				bodyElement.style.backgroundColor = "white";
 			}
 			dashboardWelcomeText.innerHTML = "Welcome to your dashboard"+firstName.value+"!";
+			resetAddCalendar();
+	bodyElement.style.backgroundColor = "white";
+	userStatus = 3;
+	
+
+	
+	unfade(dashboardElement,10);
+	var tempUser = JSON.parse(localStorage.getItem('user'));
+	firstName = tempUser.fstName;
+	lastName = tempUser.lstName;
+	colorTheme = tempUser.clrTheme;
+	eventList = tempUser.evtList;
+	showTime();
+	
+
+	setUpWelcomeTextGreetingElement.innerHTML = "Welcome "+firstName+"!";
+
+	updateColors();
+
+	if(colorTheme != "dark"){
+		setUpElement.style.backgroundColor = "white";
+	}
+	fetchClasses();
+	fetchFavorites();
+	
+	setUpElement.style.display = "inline-block";
+	dashboardWelcomeText.style.display = "none";
+	setUpWelcomeTextGreetingElement.style.display = "none";
+	prev.style.display = "none";
+	next.style.display = "none";
+	dashboardElement.style.display = "none";
+
+	unfade(setUpWelcomeBorderContainerElement, 35);
+	loadingInterval = setInterval(Minimize, loadingDuration/2);
+	loadingInterval2 = setInterval(ShiftUp, loadingDuration/2+1000);
+	loadingInterval3 = setInterval(closeWelcome, loadingDuration+2000);
+	changeWelcome();
+	if(screenMinimized == false){
+		openMyEventList();
+	}
+	
 		}
 	}
 	
@@ -2116,7 +2204,7 @@ function deleteClass(index){
 
 // Fetch classes
 function fetchClasses(){
-	updateCalendar();
+	createCalendar();
 
 	//update calendar to display which events are occuring
 
@@ -2439,6 +2527,10 @@ function fetchFavorites() {
 		
 }
 
+function fetchCalendar() {
+	createCalendar();
+}
+
 function deleteFavorite(index){
 	if(fvt.length<=6) {
 				document.getElementById("favoriteLimitError").style.display = "none";
@@ -2464,53 +2556,9 @@ function deleteFavorite(index){
 
 
 
-document.getElementById("app").innerHTML = `
-<div class="calendar-month">
-  <section class="calendar-month-header">
-    <div
-      id="selected-month"
-      class="calendar-month-header-selected-month"
-    ></div>
-    <section class="calendar-month-header-selectors">
-      <span id="previous-month-selector"><</span>
-      <span id="present-month-selector">Today</span>
-      <span id="next-month-selector">></span>
-    </section>
-  </section>
 
-  <ol
-    id="days-of-week"
-    class="day-of-week"
-  /></ol>
 
-  <ol
-    id="calendar-days"
-    class="days-grid"
-  >
-  </ol>
-</div>
-`;
 
-const WEEKDAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-const TODAY = dayjs().format("YYYY-MM-DD");
-
-const INITIAL_YEAR = dayjs().format("YYYY");
-const INITIAL_MONTH = dayjs().format("M");
-
-let selectedMonth = dayjs(new Date(INITIAL_YEAR, INITIAL_MONTH - 1, 1));
-let currentMonthDays;
-let previousMonthDays;
-let nextMonthDays;
-
-const daysOfWeekElement = document.getElementById("days-of-week");
-
-WEEKDAYS.forEach((weekday) => {
-  const weekDayElement = document.createElement("li");
-  daysOfWeekElement.appendChild(weekDayElement);
-  weekDayElement.innerText = weekday;
-});
-
-createCalendar();
 initMonthSelectors();
 
 function createCalendar(year = INITIAL_YEAR, month = INITIAL_MONTH) {
