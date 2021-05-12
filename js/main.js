@@ -940,7 +940,8 @@ function onDocumentMouseClick( event ) {
 			setUpSuccessWelcomeElement.innerHTML = "Welcome "+firstName.value+"!";
 
 		}else if(userStatus == 2){
-			setUpSuccessElement.style.display = "block";
+			setUpSuccessElement.style.display = "none";
+			setUpWelcomeElement.style.display = "block";
 			dashboardElement.style.display = "inline-block";
 			
 				bodyElement.style.backgroundColor = "white";
