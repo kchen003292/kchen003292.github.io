@@ -942,16 +942,17 @@ function onDocumentMouseClick( event ) {
 		}else if(userStatus == 2){
 			setUpSuccessElement.style.display = "none";
 			dashboardElement.style.display = "inline-block";
-			if(colorTheme != "dark"){
+			
 				bodyElement.style.backgroundColor = "white";
-			}
+			
+			updateColors();
 			dashboardWelcomeText.innerHTML = "Welcome to your dashboard"+firstName.value+"!";
 			resetAddCalendar();
 	bodyElement.style.backgroundColor = "white";
 	userStatus = 3;
 	
 
-	
+
 	unfade(dashboardElement,10);
 	var tempUser = JSON.parse(localStorage.getItem('user'));
 	firstName = tempUser.fstName;
@@ -963,7 +964,7 @@ function onDocumentMouseClick( event ) {
 
 	setUpWelcomeTextGreetingElement.innerHTML = "Welcome "+firstName+"!";
 
-	updateColors();
+	
 
 	if(colorTheme != "dark"){
 		setUpElement.style.backgroundColor = "white";
@@ -1255,7 +1256,7 @@ function setColors(color){
 		dashboardElementCircles.forEach(circle=>{
 			circle.style.backgroundImage = "";
 			circle.style.backgroundColor = color;
-		})
+		});
 	}
 	setUpWelcomeBorderContainerElement.style.color = color;
 	setUpWelcomeTextGreetingElement.style.color = color;
