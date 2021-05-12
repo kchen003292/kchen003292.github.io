@@ -105,6 +105,7 @@ var todayMonthElement = document.getElementById("today-month");
 var todayDayElement = document.getElementById("today-day");
 var addFavoritesElement = document.getElementById("addFavorite-container");
 var favoriteContainerElement = document.getElementById("favorites-Container");
+var explanationContainer = document.getElementById("explnation-container");
 
 var settingWidget = document.getElementById("settings");
 var favoritesWidget = document.getElementById("favorites");
@@ -185,6 +186,7 @@ linkByCode.style.display = "none";
 myEvents.style.display = "none";
 addMultipleClassesElement.style.display = "none";
 document.getElementById("favoriteLimitError").style.display = "none";
+explanationContainer.style.display = "none";
 
 //Widgets that are still in development will be temporarily turned off
 
@@ -270,7 +272,7 @@ const turnOnTime = () => {
 }
 
 //verify if user account is setUp
-if(localStorage.getItem('user') === null){
+if(localStorage.getItem('usoer') === null){
     //code for User Set Up
     document.getElementById("setUp").style.backgroundColor = "black";
     setUpElement.style.display = "block";
@@ -513,6 +515,14 @@ function onDocumentMouseClick( event ) {
 	
 	event.preventDefault();
 	if(userStatus == 1){
+
+		if(explanationContainer.style.display == "block" && Array.from(event.target.classList).includes("tableButton") == false &&  isChildOf(explanationContainer, event.target) == false && event.target != explanationContainer && loadingForm == false){
+			
+			fade(explanationContainer,10);
+			
+			
+
+		}
 		if(event.target == setUpUserSubmit){
 			createUser();
 		}
@@ -2153,6 +2163,10 @@ function resetAddCalendar() {
 function openMyEventList() {
 	unfade(myEvents,10);
 	
+}
+function openExplain() {
+	unfade(explanationContainer,10);
+	loadingForm = true;
 }
 function openAddFavorites() {
 	unfade(addFavoritesElement,10);
