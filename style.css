@@ -1301,6 +1301,7 @@ li {
 #setting-container .step {
 	width: 100%;
 	max-width: 800px;
+	z-index: 4;
 	
 	
 }
@@ -1932,4 +1933,8 @@ float: left;
 	column-count: 2;
 	height: 180px;
 	
+}
+
+#customColor-container .step {
+	z-index: 5;
 }
