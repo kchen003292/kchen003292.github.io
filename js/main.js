@@ -1629,7 +1629,7 @@ function showTime() {
 
 				// add button's "onclick" event.
 				button.setAttribute('onclick', 'window.open(\''+classes[i].zoom+'\')' );
-
+				button.setAttribute('style', 'background-color: '+centralColor)+';';
 
 				td.appendChild(button);
 
@@ -1695,7 +1695,7 @@ function showTime() {
 
 				// add button's "onclick" event.
 				button.setAttribute('onclick', 'window.open(\''+nextClass.zoom+'\')' );
-
+				button.setAttribute('style', 'background-color: '+centralColor)+';';
 
 				td.appendChild(button);
 
@@ -1721,7 +1721,7 @@ function showTime() {
 
 				// add button's "onclick" event.
 				button.setAttribute('onclick', 'window.open(\''+nextClass.zoom+'\')' );
-
+				button.setAttribute('style', 'background-color: '+centralColor)+';';
 
 				td.appendChild(button);
 
@@ -2385,6 +2385,7 @@ function openAddSingle() {
 function openCustom() {
 	document.getElementById('customColorForm').reset();
 	loadingForm = true;
+
 	unfade(customColorContainer,10);
 
 }
