@@ -303,6 +303,7 @@ const turnOnTime = () => {
 //verify if user account is setUp
 if(localStorage.getItem('user') === null){
     //code for User Set Up
+    document.getElementById("welcomeImage").style.display = "none";
     document.getElementById("setUp").style.backgroundColor = "black";
     setUpElement.style.display = "block";
 	unfade(setUpWelcomeBorderContainerElement, 70);
