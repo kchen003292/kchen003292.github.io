@@ -1016,9 +1016,9 @@ function onDocumentMouseClick( event ) {
 
 	
 
-	if(colorTheme != "dark"){
+	
 		setUpElement.style.backgroundColor = "white";
-	}
+	
 	fetchClasses();
 	fetchFavorites();
 	
